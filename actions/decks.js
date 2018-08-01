@@ -1,9 +1,11 @@
 import { AsyncStorage } from "react-native"
 import { createDeck, createCard } from '../utils/helpers';
 
-export const LOAD_DECKS = 'DECKS_LOAD_DECKS';
-export const ADD_DECK = 'DECKS_ADD_DECK';
-export const ADD_CARD = 'DECKS_ADD_CARD';
+const DECK_INDEX = 'deckIds'
+
+export const LOAD_DECKS = 'DECKS_LOAD_DECKS'
+export const ADD_DECK = 'DECKS_ADD_DECK'
+export const ADD_CARD = 'DECKS_ADD_CARD'
 
 const setAddDeck = (newDeck) => ({
     type: ADD_DECK,
@@ -21,18 +23,31 @@ const setLoadDecks = (decks) => ({
     decks
 })
 
-export const addNewDeck = (name) => {
+export const addNewDeck = (name) => (dispatch) => {
     let newDeck = createDeck(name);
-    return setAddDeck(newDeck)
+    AsyncStorage.getItem(DECK_INDEX)
+        .then(deckIds => {
+            deckIds.push(newDeck.id)
+            AsyncStorage.multiSet([[newDeck.id, newDeck],[DECK_INDEX, deckIds]])
+                .then(() => {
+                    dispatch(setAddDeck(newDeck))
+                })
+        })
 }
 
 export const retreiveLoadDecks = () => (dispatch) => {
-    AsyncStorage.getItem('decks')
-        .then(decks => dispatch(setLoadDecks(decks)))
+    AsyncStorage.getItem(DECK_INDEX)
+        .then(deckIds => AsyncStorage.multiGet(deckIds)
+            .then(decks => dispatch(setLoadDecks(decks))));
 }
 
 export const addNewCard = (deckId, card) => {
     let newCard = createCard(card.text, card.answer)
-    return setAddCard(deckId, newCard)
+    AsyncStorage.GetItem(deckId)
+        .then(deck => {
+            deck.cards[newCard.id] = newCard
+            AsyncStorage.setItem(deckId, deck)
+            dispatch(setAddCard(deckId, newCard))
+        })
 }
 

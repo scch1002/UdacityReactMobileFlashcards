@@ -17,10 +17,10 @@ export default function decks(state = {}, action) {
                 ...state,
                 [action.deckId]: {
                     ...state[action.deckId],
-                    cards: [
+                    cards: {
                         ...state[action.deckId].cards,
-                        action.card
-                    ]
+                        [action.card.id]: action.card
+                    }
                 }
             }
         default:

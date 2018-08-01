@@ -26,6 +26,9 @@ const DeckViewTab = createMaterialTopTabNavigator({
 });
 
 export default class App extends React.Component {
+  componentDidMount() {
+    this.props.dispatch()
+  }
   render() {
     return (
       <Provider store={store}>
