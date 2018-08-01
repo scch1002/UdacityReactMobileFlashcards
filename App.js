@@ -1,6 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createMaterialTopTabNavigator } from 'react-navigation';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import Thunk from 'redux-thunk';
+import reducer from './reducers';
+
+const store = createStore(reducer, 
+    compose(applyMiddleware( Thunk )));
+
 
 const DeckViewTab = createMaterialTopTabNavigator({
   Decks: {
@@ -20,9 +28,11 @@ const DeckViewTab = createMaterialTopTabNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-      <DeckViewTab />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+        <DeckViewTab />
+        </View>
+      </Provider>
     );
   }
 }
