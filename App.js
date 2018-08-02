@@ -5,6 +5,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import Thunk from 'redux-thunk';
 import reducer from './reducers';
+import AppWrapper from './appWrapper'
+import { DecksList } from './components/decksList'
 
 const store = createStore(reducer, 
     compose(applyMiddleware( Thunk )));
@@ -12,7 +14,7 @@ const store = createStore(reducer,
 
 const DeckViewTab = createMaterialTopTabNavigator({
   Decks: {
-    screen: () => (<Text>Decks</Text>),
+    screen: DecksList,
     navigationOptions: {
       tabBarLabel: 'Decks'
     },
@@ -26,15 +28,14 @@ const DeckViewTab = createMaterialTopTabNavigator({
 });
 
 export default class App extends React.Component {
-  componentDidMount() {
-    this.props.dispatch()
-  }
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-        <DeckViewTab />
-        </View>
+        <AppWrapper>
+          <View style={styles.container}>
+            <DeckViewTab />
+          </View>
+        </AppWrapper>
       </Provider>
     );
   }

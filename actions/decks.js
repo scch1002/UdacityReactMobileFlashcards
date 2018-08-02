@@ -37,8 +37,17 @@ export const addNewDeck = (name) => (dispatch) => {
 
 export const retreiveLoadDecks = () => (dispatch) => {
     AsyncStorage.getItem(DECK_INDEX)
-        .then(deckIds => AsyncStorage.multiGet(deckIds)
-            .then(decks => dispatch(setLoadDecks(decks))));
+        .then(deckIds => {
+                if (deckIds === null) {
+                    AsyncStorage.setItem(DECK_INDEX, [])
+                }
+                else
+                {
+                    AsyncStorage.multiGet(deckIds)
+                        .then(decks => dispatch(setLoadDecks(decks)))
+                }
+                
+            });
 }
 
 export const addNewCard = (deckId, card) => {
