@@ -1,6 +1,7 @@
 import { LOAD_DECKS, ADD_DECK, ADD_CARD } from '../actions/decks'
 
 export default function decks(state = {}, action) {
+    debugger
     switch(action.type) {
         case LOAD_DECKS: 
             return {

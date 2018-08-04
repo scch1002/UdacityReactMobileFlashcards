@@ -23,25 +23,40 @@ const setLoadDecks = (decks) => ({
     decks
 })
 
-export const addNewDeck = (name) => async (dispatch) => {
+export const addNewDeck = (name) => (dispatch) => {
     var newDeck = createDeck(name);
-    var deckIds = await AsyncStorage.getItem(DECK_INDEX)
-    deckIds.push(newDeck.id)
-    await AsyncStorage.multiSet([[newDeck.id, newDeck],[DECK_INDEX, deckIds]])
-    dispatch(setAddDeck(newDeck))
+    AsyncStorage.getItem(DECK_INDEX)
+        .then(deckIdsString => JSON.parse(deckIdsString))
+        .then(deckIds => {
+            debugger
+            deckIds.push(newDeck.id)
+            return AsyncStorage.multiSet([[newDeck.id, JSON.stringify(newDeck)],[DECK_INDEX, JSON.stringify(deckIds)]])
+        })
+        .then(() => {
+            debugger
+            dispatch(setAddDeck(newDeck))
+        })
 }
 
-export const retreiveLoadDecks = () => async (dispatch) => {
-    var deckIds = await AsyncStorage.getItem(DECK_INDEX)
-    debugger
-    if (deckIds === null) {
-        await AsyncStorage.setItem(DECK_INDEX, [])
-        debugger
-    } else if (deckIds.length !== 0) {
-        var decks = await AsyncStorage.multiGet(deckIds) 
-        dispatch(setLoadDecks(decks))
-        debugger
-    }
+export const retreiveLoadDecks = () => (dispatch) => {
+    AsyncStorage.getItem(DECK_INDEX)
+        .then(deckIdsString => JSON.parse(deckIdsString))
+        .then(deckIds => {
+            debugger
+            if (deckIds === null) {
+                return AsyncStorage.setItem(DECK_INDEX, '[]')
+                    .then(() => ({}))
+            } else if (deckIds.length !== 0) {
+                return AsyncStorage.multiGet(deckIds) 
+            }
+        })
+        .then(decks => {
+            debugger
+            if (decks !== undefined && decks !== null) {
+                dispatch(setLoadDecks(decks))
+            }     
+            dispatch(addNewDeck('Test1'))
+        })
 }
 
 export const addNewCard = async (deckId, card) => {
