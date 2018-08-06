@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FlatList, View, Text, Button, TextInput } from 'react-native'
+import { addNewDeck } from '../actions/decks'
 
 class AddDeck extends Component {
     state = {
         deckTitle: ''
+    }
+    addDeck = () => {
+        this.props.dispatch(addNewDeck(this.state.deckTitle))
     }
     render() {
         return (
@@ -15,7 +19,7 @@ class AddDeck extends Component {
                     onChangeText={(deckTitle) => this.setState({deckTitle})}
                     value={this.state.deckTitle}
                 />
-                <Button title="Submit"></Button>
+                <Button onPress={this.addDeck} title="Submit"></Button>
             </View>
         )
     }
