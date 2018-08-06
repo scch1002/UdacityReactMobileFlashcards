@@ -40,7 +40,6 @@ export const retreiveLoadDecks = () => (dispatch) => {
     AsyncStorage.getItem(DECK_INDEX)
         .then(deckIdsString => JSON.parse(deckIdsString))
         .then(deckIds => {
-            debugger
             if (deckIds === null) {
                 return AsyncStorage.setItem(DECK_INDEX, '[]')
                     .then(() => ([]))
@@ -50,15 +49,12 @@ export const retreiveLoadDecks = () => (dispatch) => {
         })
         .then(decks => {
             if (decks !== undefined && decks !== null) {
-                debugger
-                console.log('Hello there')
                 let deckObject = {};
                 for (let entry of decks) {
                     deckObject[entry[0]] = JSON.parse(entry[1])
                 }
                 dispatch(setLoadDecks(deckObject))
             }     
-            dispatch(addNewDeck('Test1'))
         })
 }
 

@@ -10,6 +10,7 @@ export const DecksList = connect(({decks}) => ({ decks: Object.values(decks) }))
             renderItem={(deck) => { 
                 return (<View style={{backgroundColor: 'white'}}>
                     <Text>{deck.item.name}</Text>
+                    <Text>{`${deck.item.cards.length} cards`}</Text>
                 </View>)
                 }}
         />
