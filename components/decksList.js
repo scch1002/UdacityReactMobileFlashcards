@@ -1,15 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { FlatList } from 'react-native'
+import { FlatList, View, Text } from 'react-native'
 
-export const DecksList = connect(({decks}) => ({ decks: Object.entries(decks) }))((props) =>
+export const DecksList = connect(({decks}) => ({ decks: Object.values(decks) }))((props) =>
 { 
-    debugger
     return (    
-    <FlatList
-        data={props.decks}
-        renderItem={(deck) => (<Text>{deck.name}</Text>)}
-    />
+        <FlatList
+            data={props.decks}
+            renderItem={(deck) => { 
+                return (<View style={{backgroundColor: 'white'}}>
+                    <Text>{deck.item.name}</Text>
+                </View>)
+                }}
+        />
 )
 }
 )

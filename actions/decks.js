@@ -28,12 +28,10 @@ export const addNewDeck = (name) => (dispatch) => {
     AsyncStorage.getItem(DECK_INDEX)
         .then(deckIdsString => JSON.parse(deckIdsString))
         .then(deckIds => {
-            debugger
             deckIds.push(newDeck.id)
             return AsyncStorage.multiSet([[newDeck.id, JSON.stringify(newDeck)],[DECK_INDEX, JSON.stringify(deckIds)]])
         })
         .then(() => {
-            debugger
             dispatch(setAddDeck(newDeck))
         })
 }
@@ -45,15 +43,20 @@ export const retreiveLoadDecks = () => (dispatch) => {
             debugger
             if (deckIds === null) {
                 return AsyncStorage.setItem(DECK_INDEX, '[]')
-                    .then(() => ({}))
+                    .then(() => ([]))
             } else if (deckIds.length !== 0) {
                 return AsyncStorage.multiGet(deckIds) 
             }
         })
         .then(decks => {
-            debugger
             if (decks !== undefined && decks !== null) {
-                dispatch(setLoadDecks(decks))
+                debugger
+                console.log('Hello there')
+                let deckObject = {};
+                for (let entry of decks) {
+                    deckObject[entry[0]] = JSON.parse(entry[1])
+                }
+                dispatch(setLoadDecks(deckObject))
             }     
             dispatch(addNewDeck('Test1'))
         })
