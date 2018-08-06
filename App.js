@@ -1,31 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { createMaterialTopTabNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import Thunk from 'redux-thunk';
 import reducer from './reducers';
 import AppWrapper from './appWrapper'
-import { DecksList } from './components/decksList'
+import { HomeTabView } from './components/home'
 
 const store = createStore(reducer, 
     compose(applyMiddleware( Thunk )));
 
-
-const DeckViewTab = createMaterialTopTabNavigator({
-  Decks: {
-    screen: DecksList,
-    navigationOptions: {
-      tabBarLabel: 'Decks'
-    },
+const StackNavigationView = createStackNavigator({
+  Home: {
+    screen: HomeTabView
   },
-  AddDeck: {
-    screen: () => (<Text>AddDeck</Text>),
-    navigationOptions: {
-      tabBarLabel: ' Add Deck'
-    }
+  DeckDetails: {
+    screen: (props) => (<Text>DeckDetails</Text>)
   }
-});
+})
 
 export default class App extends React.Component {
   render() {
@@ -33,7 +26,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <AppWrapper>
           <View style={styles.container}>
-            <DeckViewTab />
+            <StackNavigationView />
           </View>
         </AppWrapper>
       </Provider>

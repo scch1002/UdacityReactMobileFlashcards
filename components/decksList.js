@@ -1,19 +1,23 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { FlatList, View, Text } from 'react-native'
+import { FlatList, View, Text, TouchableOpacity } from 'react-native'
 
-export const DecksList = connect(({decks}) => ({ decks: Object.values(decks) }))((props) =>
+class DecksList extends Component
 { 
+    render(){
     return (    
         <FlatList
-            data={props.decks}
+            data={this.props.decks}
             renderItem={(deck) => { 
-                return (<View style={{backgroundColor: 'white'}}>
-                    <Text>{deck.item.name}</Text>
-                    <Text>{`${deck.item.cards.length} cards`}</Text>
-                </View>)
+                return (
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckDetails', { deckId: deck.item.id })}>
+                    <View style={{backgroundColor: 'white'}}>
+                        <Text>{deck.item.name}</Text>
+                        <Text>{`${deck.item.cards.length} cards`}</Text>
+                    </View>
+                </TouchableOpacity>)
                 }}
-        />
-)
+        />)}
 }
-)
+
+export default connect(({decks}) => ({ decks: Object.values(decks) }))(DecksList)
