@@ -7,6 +7,7 @@ import Thunk from 'redux-thunk';
 import reducer from './reducers';
 import AppWrapper from './appWrapper'
 import { HomeTabView } from './components/home'
+import DeckDetails from './components/deckDetails'
 
 const store = createStore(reducer, 
     compose(applyMiddleware( Thunk )));
@@ -16,7 +17,7 @@ const StackNavigationView = createStackNavigator({
     screen: HomeTabView
   },
   DeckDetails: {
-    screen: (props) => (<Text>DeckDetails</Text>)
+    screen: DeckDetails
   }
 })
 
