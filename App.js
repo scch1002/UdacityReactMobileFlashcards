@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import Thunk from 'redux-thunk';
+import { setLocalNotification } from './utils/helpers'
 import reducer from './reducers';
 import AppWrapper from './appWrapper'
 import { HomeTabView } from './components/home'
@@ -31,6 +32,9 @@ const StackNavigationView = createStackNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store={store}>

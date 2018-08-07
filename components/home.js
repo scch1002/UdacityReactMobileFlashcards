@@ -15,7 +15,7 @@ export const HomeTabView = createMaterialTopTabNavigator({
     AddDeck: {
       screen: AddDeck,
       navigationOptions: {
-        tabBarLabel: ' Add Deck'
+        tabBarLabel: 'Add Deck'
       }
     }
   });

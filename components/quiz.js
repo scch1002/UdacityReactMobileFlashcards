@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FlatList, View, Text, Button } from 'react-native'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class Quiz extends Component {
     state = {
         showAnswer: false,
         currentCard: 0,
         score: 0
+    }
+    componentDidUpdate(prevProps) { 
+        let deck = this.props.decks[this.props.navigation.state.params.deckId]
+        if (this.state.currentCard > deck.cards.length - 1) {
+            clearLocalNotification()
+                .then(setLocalNotification)
+        }
     }
     toggleAnswer = () => {
         this.setState((prevState) => ({
