@@ -9,11 +9,11 @@ class AddCard extends Component {
         answer: ''
     }
     addCard = () => {
-        debugger
         this.props.dispatch(addNewCard(this.props.navigation.state.params.deckId, {
             text: this.state.question,
             answer: this.state.answer
         }))
+        this.props.navigation.goBack()
     }
     render() {
         return (

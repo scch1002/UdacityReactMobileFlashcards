@@ -1,4 +1,5 @@
-import uuidv4 from 'uuid/v4'; 
+import { AsyncStorage } from "react-native"
+import uuidv4 from 'uuid/v4'
 
 const NOTIFICATION_KEY = 'MobileFlashCardNotifcation'
 

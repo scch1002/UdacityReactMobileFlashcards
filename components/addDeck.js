@@ -8,7 +8,11 @@ class AddDeck extends Component {
         deckTitle: ''
     }
     addDeck = () => {
-        this.props.dispatch(addNewDeck(this.state.deckTitle))
+        this.props.dispatch(addNewDeck(this.state.deckTitle, (deckid) => 
+        { 
+            this.props.navigation.navigate('Decks')
+            this.props.navigation.navigate('DeckDetails', { deckId: deckid })
+        }))
     }
     render() {
         return (

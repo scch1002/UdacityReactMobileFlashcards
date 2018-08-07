@@ -23,22 +23,25 @@ const setLoadDecks = (decks) => ({
     decks
 })
 
-export const addNewDeck = (name) => (dispatch) => {
+export const addNewDeck = (name, navigationToNewDeck) => (dispatch) => {
     var newDeck = createDeck(name);
     AsyncStorage.getItem(DECK_INDEX)
-        .then(deckIdsString => JSON.parse(deckIdsString))
+        .then(JSON.parse)
         .then(deckIds => {
             deckIds.push(newDeck.id)
             return AsyncStorage.multiSet([[newDeck.id, JSON.stringify(newDeck)],[DECK_INDEX, JSON.stringify(deckIds)]])
         })
         .then(() => {
             dispatch(setAddDeck(newDeck))
+            if (typeof navigationToNewDeck === 'function') {
+                navigationToNewDeck(newDeck.id);
+            }
         })
 }
 
 export const retreiveLoadDecks = () => (dispatch) => {
     AsyncStorage.getItem(DECK_INDEX)
-        .then(deckIdsString => JSON.parse(deckIdsString))
+        .then(JSON.parse)
         .then(deckIds => {
             if (deckIds === null) {
                 return AsyncStorage.setItem(DECK_INDEX, '[]')
@@ -61,7 +64,7 @@ export const retreiveLoadDecks = () => (dispatch) => {
 export const addNewCard = (deckId, card) => (dispatch) => {
     var newCard = createCard(card.text, card.answer)
     AsyncStorage.getItem(deckId)
-        .then(deckstring => JSON.parse(deckstring))
+        .then(JSON.parse)
         .then(deck => {
             deck.cards.push(newCard)
             return AsyncStorage.setItem(deckId, JSON.stringify(deck))
