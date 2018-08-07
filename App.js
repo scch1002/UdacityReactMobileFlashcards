@@ -11,6 +11,7 @@ import { HomeTabView } from './components/home'
 import DeckDetails from './components/deckDetails'
 import AddCard from './components/addCard'
 import Quiz from './components/quiz'
+import { styles } from './components/styles'
 
 
 const store = createStore(reducer, 
@@ -47,10 +48,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});

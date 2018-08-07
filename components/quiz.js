@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FlatList, View, Text, Button } from 'react-native'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
+import { styles } from './styles'
 
 class Quiz extends Component {
     state = {
@@ -48,7 +49,7 @@ class Quiz extends Component {
         let deck = this.props.decks[this.props.navigation.state.params.deckId]
         if (this.state.currentCard > deck.cards.length - 1) {
             return (
-                <View>
+                <View style={styles.container}>
                     <Text>Quiz Complete</Text>
                     <Text>{`Score: ${this.state.score}/${deck.cards.length}`}</Text>
                     <Button title="Restart Quiz" onPress={this.restartQuiz}></Button>
@@ -58,7 +59,7 @@ class Quiz extends Component {
         } 
         let card = deck.cards[this.state.currentCard]
         return (
-            <View>
+            <View style={styles.container}>
                 { this.state.showAnswer ? 
                     <Text>{card.text}</Text> :
                     <Text>{card.answer}</Text>

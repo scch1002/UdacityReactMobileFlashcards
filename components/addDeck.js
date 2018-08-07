@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FlatList, View, Text, Button, TextInput } from 'react-native'
 import { addNewDeck } from '../actions/decks'
+import { styles } from './styles'
 
 class AddDeck extends Component {
     state = {
@@ -16,7 +17,7 @@ class AddDeck extends Component {
     }
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <Text>What is the title of your new deck?</Text>
                 <TextInput
                     style={{height: 40, borderColor: 'gray', borderWidth: 1}}

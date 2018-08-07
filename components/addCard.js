@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FlatList, View, Text, Button, TextInput } from 'react-native'
+import { styles } from './styles'
 import { addNewCard } from '../actions/decks'
 
 class AddCard extends Component {
@@ -17,16 +18,16 @@ class AddCard extends Component {
     }
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <Text>Question:</Text>
                 <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                    style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10 }}
                     onChangeText={(question) => this.setState({question})}
                     value={this.state.question}
                 />
                 <Text>Answer:</Text>
                 <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                    style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10 }}
                     onChangeText={(answer) => this.setState({answer})}
                     value={this.state.answer}
                 />
