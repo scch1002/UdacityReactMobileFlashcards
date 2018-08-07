@@ -24,7 +24,6 @@ const setLoadDecks = (decks) => ({
 })
 
 export const addNewDeck = (name) => (dispatch) => {
-    debugger
     var newDeck = createDeck(name);
     AsyncStorage.getItem(DECK_INDEX)
         .then(deckIdsString => JSON.parse(deckIdsString))

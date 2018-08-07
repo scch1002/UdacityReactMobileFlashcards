@@ -8,9 +8,10 @@ export default function decks(state = {}, action) {
                 ...action.decks
             }
         case ADD_DECK:
+            debugger
             return {
                 ...state,
-                [action.newDeck.id]: newDeck
+                [action.newDeck.id]: action.newDeck
             }
         case ADD_CARD:
             return {
