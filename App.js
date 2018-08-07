@@ -8,6 +8,9 @@ import reducer from './reducers';
 import AppWrapper from './appWrapper'
 import { HomeTabView } from './components/home'
 import DeckDetails from './components/deckDetails'
+import AddCard from './components/addCard'
+import Quiz from './components/quiz'
+
 
 const store = createStore(reducer, 
     compose(applyMiddleware( Thunk )));
@@ -18,6 +21,12 @@ const StackNavigationView = createStackNavigator({
   },
   DeckDetails: {
     screen: DeckDetails
+  },
+  AddCard: {
+    screen: AddCard
+  },
+  Quiz: {
+    screen: Quiz
   }
 })
 

@@ -58,11 +58,16 @@ export const retreiveLoadDecks = () => (dispatch) => {
         })
 }
 
-export const addNewCard = async (deckId, card) => {
+export const addNewCard = (deckId, card) => (dispatch) => {
     var newCard = createCard(card.text, card.answer)
-    var deck = await AsyncStorage.GetItem(deckId)
-    deck.cards[newCard.id] = newCard
-    await AsyncStorage.setItem(deckId, deck)
-    dispatch(setAddCard(deckId, newCard))
+    AsyncStorage.getItem(deckId)
+        .then(deckstring => JSON.parse(deckstring))
+        .then(deck => {
+            deck.cards.push(newCard)
+            return AsyncStorage.setItem(deckId, JSON.stringify(deck))
+        })
+        .then(() => {
+            dispatch(setAddCard(deckId, newCard))
+        })
 }
 
