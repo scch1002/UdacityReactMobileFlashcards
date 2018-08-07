@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { FlatList, View, Text, Button } from 'react-native'
+import { View, Text } from 'react-native'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import { styles } from './styles'
+import { Button } from './button'
 
 class Quiz extends Component {
     state = {

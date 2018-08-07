@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { FlatList, View, Text, Button, TextInput } from 'react-native'
+import { FlatList, View, Text, TextInput } from 'react-native'
 import { addNewDeck } from '../actions/decks'
 import { styles } from './styles'
+import { Button } from './button'
 
 class AddDeck extends Component {
     state = {

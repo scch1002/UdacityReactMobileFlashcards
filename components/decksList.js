@@ -12,8 +12,8 @@ class DecksList extends Component
                 return (
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckDetails', { deckId: deck.item.id })}>
                     <View style={{backgroundColor: 'white'}}>
-                        <Text>{deck.item.name}</Text>
-                        <Text>{`${deck.item.cards.length} cards`}</Text>
+                        <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 25 }} >{deck.item.name}</Text>
+                        <Text style={{ textAlign: 'center', marginBottom: 10, fontWeight: 'bold', fontSize: 16 }}>{`${deck.item.cards.length} cards`}</Text>
                     </View>
                 </TouchableOpacity>)
                 }}
