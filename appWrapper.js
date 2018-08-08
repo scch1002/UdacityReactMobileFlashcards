@@ -4,6 +4,7 @@ import { retreiveLoadDecks, addNewDeck } from './actions/decks'
 
 class AppWrapper extends Component {
     componentDidMount() {
+        debugger
         this.props.dispatch(retreiveLoadDecks())
     }
     render() {

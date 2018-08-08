@@ -51,23 +51,31 @@ class Quiz extends Component {
         if (this.state.currentCard > deck.cards.length - 1) {
             return (
                 <View style={styles.container}>
-                    <Text>Quiz Complete</Text>
-                    <Text>{`Score: ${this.state.score}/${deck.cards.length}`}</Text>
-                    <Button title="Restart Quiz" onPress={this.restartQuiz}></Button>
-                    <Button title="Back to Deck" onPress={this.backToDeck}></Button>                     
+                    <View style={{flex: 1, justifyContent: 'center'}}>
+                        <Text>Quiz Complete</Text>
+                        <Text>{`Score: ${this.state.score}/${deck.cards.length}`}</Text>
+                    </View>
+                    <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                        <Button title="Restart Quiz" onPress={this.restartQuiz}></Button>
+                        <Button title="Back to Deck" onPress={this.backToDeck}></Button>
+                    </View>                     
                 </View>
             )
         } 
         let card = deck.cards[this.state.currentCard]
         return (
             <View style={styles.container}>
-                { this.state.showAnswer ? 
-                    <Text>{card.text}</Text> :
-                    <Text>{card.answer}</Text>
-                }
-                <Button title={this.state.showAnswer ? 'Hide Answer' : 'Show Answer'} onPress={this.toggleAnswer}></Button>
-                <Button title="Correct" onPress={this.answerCorrect} />
-                <Button title="InCorrect" onPress={this.answerInCorrect} />
+                <View style={{flex: 1, justifyContent: 'center'}}>
+                    { this.state.showAnswer ? 
+                        <Text>{card.text}</Text> :
+                        <Text>{card.answer}</Text>
+                    }
+                </View>
+                <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                    <Button title={this.state.showAnswer ? 'Hide Answer' : 'Show Answer'} onPress={this.toggleAnswer}></Button>
+                    <Button title="Correct" onPress={this.answerCorrect} />
+                    <Button title="InCorrect" onPress={this.answerInCorrect} />
+                </View>
             </View>
         )
     }

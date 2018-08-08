@@ -15,10 +15,14 @@ class DeckDetails extends Component {
         let deck = this.props.decks[this.props.navigation.state.params.deckId]
         return (
             <View style={styles.container}>
-                <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 25 }}>{deck.name}</Text>
-                <Text style={{ textAlign: 'center', marginBottom: 10, fontWeight: 'bold', fontSize: 16 }}>{`${deck.cards.length} cards`}</Text>
-                <Button onPress={this.addCard} title='Add Card'></Button>
-                <Button onPress={this.takeQuiz} title='Start Quiz'></Button>
+                <View style={{flex: 3, justifyContent: 'center'}}>
+                    <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 25 }}>{deck.name}</Text>
+                    <Text style={{ textAlign: 'center', marginBottom: 10, fontWeight: 'bold', fontSize: 16 }}>{`${deck.cards.length} cards`}</Text>
+                </View>
+                <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                    <Button onPress={this.addCard} title='Add Card'></Button>
+                    <Button onPress={this.takeQuiz} title='Start Quiz'></Button>
+                </View>
             </View>)
     }
 }

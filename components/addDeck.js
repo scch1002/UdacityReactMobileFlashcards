@@ -19,13 +19,17 @@ class AddDeck extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>What is the title of your new deck?</Text>
-                <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={(deckTitle) => this.setState({deckTitle})}
-                    value={this.state.deckTitle}
-                />
-                <Button onPress={this.addDeck} title="Submit"></Button>
+                <View>
+                    <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>What is the title of your new deck?</Text>
+                    <TextInput
+                        style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 5}}
+                        onChangeText={(deckTitle) => this.setState({deckTitle})}
+                        value={this.state.deckTitle}
+                    />
+                </View>
+                <View style={{flex: 3, justifyContent: 'flex-end'}}>
+                    <Button onPress={this.addDeck} title="Submit"></Button>
+                </View>
             </View>
         )
     }

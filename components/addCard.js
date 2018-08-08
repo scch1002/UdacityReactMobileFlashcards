@@ -20,19 +20,23 @@ class AddCard extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Question:</Text>
-                <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10 }}
-                    onChangeText={(question) => this.setState({question})}
-                    value={this.state.question}
-                />
-                <Text>Answer:</Text>
-                <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10 }}
-                    onChangeText={(answer) => this.setState({answer})}
-                    value={this.state.answer}
-                />
-                <Button title="Submit" onPress={this.addCard}></Button>
+                <View style={{flex: 3}}>
+                    <Text style={{ margin: 10, fontWeight: 'bold', fontSize: 20 }}>Question:</Text>
+                    <TextInput
+                        style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10 }}
+                        onChangeText={(question) => this.setState({question})}
+                        value={this.state.question}
+                    />
+                    <Text style={{ margin: 10, fontWeight: 'bold', fontSize: 20 }}>Answer:</Text>
+                    <TextInput
+                        style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10 }}
+                        onChangeText={(answer) => this.setState({answer})}
+                        value={this.state.answer}
+                    />
+                </View>
+                <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                    <Button title="Submit" onPress={this.addCard}></Button>
+                </View>
             </View>
         )
     }
