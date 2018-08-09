@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FlatList, View, Text, TouchableOpacity } from 'react-native'
+import { styles } from './styles'
 
 class DecksList extends Component
 { 
     render(){
     return (    
         <FlatList
+            style={styles.container}
             data={this.props.decks}
             renderItem={(deck) => { 
                 return (

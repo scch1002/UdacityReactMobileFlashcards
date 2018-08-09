@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { View, Text } from 'react-native'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
@@ -67,8 +67,14 @@ class Quiz extends Component {
             <View style={styles.container}>
                 <View style={{flex: 1, justifyContent: 'center'}}>
                     { this.state.showAnswer ? 
-                        <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>{card.text}</Text> :
-                        <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>{card.answer}</Text>
+                        <Fragment>
+                            <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>Answer:</Text>
+                            <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>{card.answer}</Text>
+                        </Fragment> :
+                        <Fragment>
+                            <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>Question:</Text>
+                            <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>{card.text}</Text>
+                        </Fragment>                       
                     }
                 </View>
                 <View style={{flex: 1, justifyContent: 'flex-end'}}>
