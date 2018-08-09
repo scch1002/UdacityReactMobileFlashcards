@@ -15,6 +15,9 @@ class AddDeck extends Component {
             this.props.navigation.navigate('Decks')
             this.props.navigation.navigate('DeckDetails', { deckId: deckid })
         }))
+        this.setState({
+            deckTitle: ''
+        })
     }
     render() {
         return (
