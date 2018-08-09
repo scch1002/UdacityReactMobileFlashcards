@@ -21,15 +21,15 @@ class AddCard extends Component {
         return (
             <View style={styles.container}>
                 <View style={{flex: 3}}>
-                    <Text style={{ margin: 10, fontWeight: 'bold', fontSize: 20 }}>Question:</Text>
+                    <Text style={styles.label}>Question:</Text>
                     <TextInput
-                        style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10 }}
+                        style={styles.textInput}
                         onChangeText={(question) => this.setState({question})}
                         value={this.state.question}
                     />
-                    <Text style={{ margin: 10, fontWeight: 'bold', fontSize: 20 }}>Answer:</Text>
+                    <Text style={styles.label}>Answer:</Text>
                     <TextInput
-                        style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 10 }}
+                        style={styles.textInput}
                         onChangeText={(answer) => this.setState({answer})}
                         value={this.state.answer}
                     />

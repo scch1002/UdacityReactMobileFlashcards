@@ -49,6 +49,7 @@ export function clearLocalNotification () {
           Permissions.askAsync(Permissions.NOTIFICATIONS)
             .then(({ status }) => {
               if (status === 'granted') {
+                debugger
                 Notifications.cancelAllScheduledNotificationsAsync()
   
                 let tomorrow = new Date()

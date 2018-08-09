@@ -52,8 +52,8 @@ class Quiz extends Component {
             return (
                 <View style={styles.container}>
                     <View style={{flex: 1, justifyContent: 'center'}}>
-                        <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>Quiz Complete</Text>
-                        <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>{`Score: ${this.state.score}/${deck.cards.length}`}</Text>
+                        <Text style={[styles.label, { textAlign: 'center'}]}>Quiz Complete</Text>
+                        <Text style={[styles.smallLabel, { textAlign: 'center' }]}>{`Score: ${this.state.score}/${deck.cards.length}`}</Text>
                     </View>
                     <View style={{flex: 1, justifyContent: 'flex-end'}}>
                         <Button title="Restart Quiz" onPress={this.restartQuiz}></Button>
@@ -66,17 +66,17 @@ class Quiz extends Component {
         return (
             <View style={styles.container}>
                 <View style={{ flex: 1 }}>
-                    <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 20 }}>{`Current Card: ${this.state.currentCard + 1} of ${deck.cards.length}`}</Text>
+                    <Text style={[ styles.smallLabel, { textAlign: 'center' }]}>{`Current Card: ${this.state.currentCard + 1} of ${deck.cards.length}`}</Text>
                 </View>
                 <View style={{flex: 2}}>
                     { this.state.showAnswer ? 
                         <Fragment>
-                            <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>Answer:</Text>
-                            <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>{card.answer}</Text>
+                            <Text style={[ styles.label, { textAlign: 'center' }]}>Answer:</Text>
+                            <Text style={[ styles.label, { textAlign: 'center' }]}>{card.answer}</Text>
                         </Fragment> :
                         <Fragment>
-                            <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>Question:</Text>
-                            <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>{card.text}</Text>
+                            <Text style={[ styles.label, { textAlign: 'center' }]}>Question:</Text>
+                            <Text style={[ styles.label, { textAlign: 'center' }]}>{card.text}</Text>
                         </Fragment>                       
                     }
                 </View>

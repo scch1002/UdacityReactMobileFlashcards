@@ -23,9 +23,9 @@ class AddDeck extends Component {
         return (
             <View style={styles.container}>
                 <View>
-                    <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>What is the title of your new deck?</Text>
+                    <Text style={styles.label}>What is the title of your new deck?</Text>
                     <TextInput
-                        style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 5, fontSize: 20}}
+                        style={styles.textInput}
                         onChangeText={(deckTitle) => this.setState({deckTitle})}
                         value={this.state.deckTitle}
                     />
