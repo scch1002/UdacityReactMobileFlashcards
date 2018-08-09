@@ -65,7 +65,10 @@ class Quiz extends Component {
         let card = deck.cards[this.state.currentCard]
         return (
             <View style={styles.container}>
-                <View style={{flex: 1, justifyContent: 'center'}}>
+                <View style={{ flex: 1 }}>
+                    <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 20 }}>{`Current Card: ${this.state.currentCard + 1} of ${deck.cards.length}`}</Text>
+                </View>
+                <View style={{flex: 2}}>
                     { this.state.showAnswer ? 
                         <Fragment>
                             <Text style={{ textAlign: 'center', margin: 10, fontWeight: 'bold', fontSize: 35 }}>Answer:</Text>
@@ -77,10 +80,10 @@ class Quiz extends Component {
                         </Fragment>                       
                     }
                 </View>
-                <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                <View style={{flex: 2, justifyContent: 'flex-end'}}>
                     <Button title={this.state.showAnswer ? 'Hide Answer' : 'Show Answer'} onPress={this.toggleAnswer}></Button>
                     <Button title="Correct" onPress={this.answerCorrect} />
-                    <Button title="InCorrect" onPress={this.answerInCorrect} />
+                    <Button title="Incorrect" onPress={this.answerInCorrect} />
                 </View>
             </View>
         )
