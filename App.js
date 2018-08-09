@@ -13,22 +13,36 @@ import AddCard from './components/addCard'
 import Quiz from './components/quiz'
 import { styles } from './components/styles'
 
-
 const store = createStore(reducer, 
     compose(applyMiddleware( Thunk )));
 
+const navigationOptions = (title) => ({
+  title,
+  headerStyle: {
+    backgroundColor: 'black',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+})
+
 const StackNavigationView = createStackNavigator({
   Home: {
-    screen: HomeTabView
+    screen: HomeTabView,
+    navigationOptions: { ...navigationOptions('Home'), header: null}
   },
   DeckDetails: {
-    screen: DeckDetails
+    screen: DeckDetails,
+    navigationOptions: navigationOptions('Deck')
   },
   AddCard: {
-    screen: AddCard
+    screen: AddCard,
+    navigationOptions: navigationOptions('Add Card')
   },
   Quiz: {
-    screen: Quiz
+    screen: Quiz,
+    navigationOptions: navigationOptions('Quiz')
   }
 })
 
